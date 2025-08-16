@@ -1,0 +1,49 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "dotenv -e .env.test jest --coverage",
+    "dev": "dotenv -e .env.development tsx watch src/main.ts",
+    "start": "node dist/main.js",
+    "build": "tsup src/main.ts",
+    "test:watch": "dotenv -e .env.test jest -- --watchAll --no-coverage",
+    "docker:dev": "npm run docker:build:dev && npm run docker:run:dev",
+    "docker:run:dev": "docker run --rm -it -p 3001:3001 --name $npm_package_name -v ./:/app $npm_package_name:dev",
+    "docker:build:dev": "docker build --target development -t $npm_package_name:dev -f Dockerfile .",
+    "docker:prod": "npm run docker:build:prod && npm run docker:run:prod",
+    "docker:run:prod": "docker run -d $npm_package_name:prod",
+    "docker:build:prod": "docker build --target production -t $npm_package_name:prod -f Dockerfile .",
+    "docker:db:up": "docker-compose -f 'docker-compose.yml' up -d --build 'postgis'",
+    "docker:db:down": "docker-compose -f 'docker-compose.yml' down"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
+    "@types/supertest": "^6.0.3",
+    "dotenv-cli": "^10.0.0",
+    "eslint": "^9.33.0",
+    "eslint-plugin-boundaries": "^5.0.1",
+    "globals": "^16.3.0",
+    "jest": "^30.0.5",
+    "supertest": "^7.1.4",
+    "ts-jest": "^29.4.1",
+    "ts-node-app": "^0.3.1",
+    "tsconfig-paths": "^4.2.0",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.4",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.39.1"
+  },
+  "engines": {
+    "node": ">=20.19.4"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
