@@ -1,0 +1,66 @@
+{
+    "version": "0.2.0",
+    "compounds": [
+        {
+            "name": "RunFrontendOverChrome",
+            "configurations": [
+                "ReactDevServer",
+                "DebugNavigatorChrome"
+            ],
+            "stopAll": true,
+            "presentation": {
+                "hidden": false,
+                "group": "",
+                "order": 2
+            }
+        },
+        {
+            "name": "RunFrontendOverMsedge",
+            "configurations": [
+                "ReactDevServer",
+                "DebugNavigatorMsedge"
+            ],
+            "stopAll": true,
+            "presentation": {
+                "hidden": false,
+                "group": "",
+                "order": 3
+            }
+        }
+    ],
+    "configurations": [
+        {
+            "name": "ReactDevServer",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "npm start",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "BROWSER": "none"
+            },
+            "presentation": {
+                "hidden": true
+            }
+        },
+        {
+            "name": "DebugNavigatorChrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}/src",
+            "presentation": {
+                "hidden": true
+            }
+        },
+        {
+            "name": "DebugNavigatorMsedge",
+            "type": "msedge",
+            "request": "launch",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}/src",
+            "presentation": {
+                "hidden": true
+            }
+        }
+    ]
+}

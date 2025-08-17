@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "RunBackend",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "tsx",
+            "runtimeArgs": [
+                "watch",
+                "src/main.ts"
+            ],
+            "presentation": {
+                "hidden": false,
+                "group": "",
+                "order": 2
+            },
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "envFile": "${workspaceFolder}/.env.development"
+        }
+    ]
+}

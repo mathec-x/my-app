@@ -7,5 +7,26 @@
 			"path": "frontend"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"debug.console.closeOnEnd": true,
+		"debug.toolBarLocation": "docked"
+	},
+	"launch": {
+		"version": "0.2.0",
+		"compounds": [
+			{
+				"stopAll": true,
+				"name": "RunFullstack",
+				"configurations": [
+					"RunBackend",
+					"ReactDevServer"
+				],
+				"presentation": {
+					"hidden": false,
+					"group": "Fullstack",
+					"order": 1
+				}
+			}
+		]
+	}
 }
