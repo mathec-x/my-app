@@ -52,23 +52,6 @@ export class ExpressAdapter {
     this.app.use(this.prefix, this.routeAdapter.register(factoryInstance.router));
   }
 
-  async start(port: number, callback?: () => void) {
-    try {
-      this.app.listen(port, (error) => {
-        if (error) {
-          throw error;
-        }
-        this.logger.info('Environment:', process.env.NODE_ENV);
-        this.logger.info('Server running on port', port);
-        this.logger.info('Application Name:', process.env.APPLICATION_NAME);
-        this.logger.verbose('Database URL:', process.env.DATABASE_URL);
-        callback?.();
-      });
-    } catch (error) {
-      this.logger.critical(error, { port });
-    }
-  }
-
   /**
    * @example
    * app.usePageRouter('adapters/pages');
@@ -106,6 +89,23 @@ export class ExpressAdapter {
 
         this.useRouter(router);
       }).catch((error) => this.logger.critical(`Failed to load page module at ${file}:`, error));
+    }
+  }
+
+  async start(port: number, callback?: () => void) {
+    try {
+      this.app.listen(port, (error) => {
+        if (error) {
+          throw error;
+        }
+        this.logger.info('Environment:', process.env.NODE_ENV);
+        this.logger.info('Server running on port', port);
+        this.logger.info('Application Name:', process.env.APPLICATION_NAME);
+        this.logger.verbose('Database URL:', process.env.DATABASE_URL);
+        callback?.();
+      });
+    } catch (error) {
+      this.logger.critical(error, { port });
     }
   }
 
