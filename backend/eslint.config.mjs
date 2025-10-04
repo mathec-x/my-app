@@ -23,7 +23,7 @@ export default defineConfig([
     ignores: ['__tests__/*', '__mocks__/*', '**/*.spec.ts', '**/*.test.ts'],
     rules: {
       'max-len': ['error', { code: 120, ignoreComments: true, ignoreTrailingComments: true }],
-      'max-lines': ['warn', { max: 50, skipBlankLines: true, skipComments: true }],
+      'max-lines': ['warn', { max: 100, skipBlankLines: true, skipComments: true }],
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
     },

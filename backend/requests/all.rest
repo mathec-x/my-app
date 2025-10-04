@@ -1,0 +1,7 @@
+### list users
+GET http://localhost:3001/api/v1/user
+Content-Type: application/json
+
+### get user
+GET http://localhost:3001/api/v1/user/1
+Content-Type: application/json

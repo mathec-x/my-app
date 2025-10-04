@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "main": "dist/main.js",
   "scripts": {
-    "test": "dotenv -e .env.test jest --coverage",
-    "dev": "dotenv -e .env.development tsx watch src/main.ts",
+    "test": "dotenv -v LOG_LEVEL=${npm_config_log:-none} -e .env.test jest --coverage",
+    "dev": "dotenv -v LOG_LEVEL=${npm_config_log:-info} -e .env.${npm_config_env:-development} tsx watch src/main.ts",
     "start": "node dist/main.js",
     "build": "tsup src/main.ts",
+    "db:push": "dotenv -e .env.development prisma db push && prisma generate",
+    "db:pull": "dotenv -e .env.development prisma db pull && prisma generate",
     "test:watch": "dotenv -e .env.test jest -- --watchAll --no-coverage",
     "docker:dev": "npm run docker:build:dev && npm run docker:run:dev",
     "docker:run:dev": "docker run --rm -it -p 3001:3001 --name $npm_package_name -v ./:/app $npm_package_name:dev",
@@ -44,6 +46,9 @@
     "node": ">=20.19.4"
   },
   "dependencies": {
-    "express": "^5.1.0"
+    "@prisma/client": "^6.14.0",
+    "express": "^5.1.0",
+    "print-tools": "^1.0.0",
+    "prisma": "^6.14.0"
   }
 }
